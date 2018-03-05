@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:screenOrientation="portrait"
     tools:context="com.tca.rez.tcainternationalgames.MainActivity">
 
 
@@ -20,26 +21,29 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgLogo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/logo_mdpi" />
 
         <EditText
-            android:id="@+id/txtUserName"
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="User Name"
+            android:hint="@string/hint_user"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:singleLine="true"
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/txtPassword"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:textAlignment="center" />
 
@@ -48,7 +52,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Submit"
-            android:padding="35dp"/>
+            android:padding="15dp"
+            android:hint="@string/btn_login"/>
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:visibility="gone" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
