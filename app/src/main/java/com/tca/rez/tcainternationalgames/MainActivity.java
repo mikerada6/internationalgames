@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             if(temp.equals("yes"))
             {
                 //log in
-                Intent i = new Intent(this, Main2Activity.class);
+                Intent i = new Intent(this, GameLandingPage.class);
                 i.putExtra("user", user); //Optional parameters
                 startActivity(i);
             }
