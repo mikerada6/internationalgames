@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 //log in
                 Intent i = new Intent(this, GameLandingPage.class);
-                i.putExtra("user", user); //Optional parameters
+                i.putExtra("com.tca.rez.tcainternationalgames.user", user+""); //Optional parameters
                 startActivity(i);
             }
             else

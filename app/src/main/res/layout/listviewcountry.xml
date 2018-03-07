@@ -17,7 +17,7 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/tvCountry"
+        android:id="@+id/tvCountrySmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -35,7 +35,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imgFlag"
-        app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCountrySmall" />
 
     <TextView
         android:id="@+id/tvStudent"
@@ -45,7 +45,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/tvTeacher"
-        app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCountrySmall" />
 
     <TextView
         android:id="@+id/tvScore"

@@ -25,14 +25,14 @@ public class CountryAdapter extends BaseAdapter {
     String[] countries;
     String[] teachers;
     String[] students;
-    String flag;
+    String[] flags;
     String score;
 
-    public CountryAdapter(Context c, String[] countries, String[] teachers, String[] students, String flagURI) {
+    public CountryAdapter(Context c, String[] countries, String[] teachers, String[] students, String[] flagURI) {
         this.countries = countries;
         this.teachers = teachers;
         this.students = students;
-        this.flag=flagURI;
+        this.flags = flagURI;
         this.score = "none";
         mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -57,12 +57,12 @@ public class CountryAdapter extends BaseAdapter {
         View v = mInflater.inflate(R.layout.listviewcountry, null);
         TextView tvTeacher = (TextView) v.findViewById(R.id.tvTeacher);
         TextView tvStudent = (TextView) v.findViewById(R.id.tvStudent);
-        TextView tvCountry = (TextView) v.findViewById(R.id.tvCountry);
+        TextView tvCountry = (TextView) v.findViewById(R.id.tvCountrySmall);
         TextView tvScore = (TextView) v.findViewById(R.id.tvScore);
 
         try {
             ImageView img = (ImageView) v.findViewById(R.id.imgFlag);
-            Bitmap bitmap = BitmapFactory.decodeStream((InputStream) new URL(flag).getContent());
+            Bitmap bitmap = BitmapFactory.decodeStream((InputStream) new URL(flags[i]).getContent());
             img.setImageBitmap(bitmap);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -78,13 +78,10 @@ public class CountryAdapter extends BaseAdapter {
         tvTeacher.setText(teacher);
         tvScore.setText(student);
         tvCountry.setText(country);
-        if(score.equals("none"))
-        {
+        if (score.equals("none")) {
             tvScore.setText("0.00");
-            tvScore.setTextColor(Color.GRAY);
-        }
-        else
-        {
+            tvScore.setTextColor(Color.RED);
+        } else {
             tvScore.setText(score);
         }
         return v;
