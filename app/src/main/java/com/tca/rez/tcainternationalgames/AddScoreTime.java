@@ -30,7 +30,10 @@ public class AddScoreTime extends AppCompatActivity {
     TextView minute;
     TextView second;
     TextView milisecond;
-    String user;
+    public static String user;
+    public static int gameID;
+    public static int userID;
+
     String flag;
 
     @Override
@@ -80,7 +83,13 @@ public class AddScoreTime extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameScore = Integer.parseInt(minute.getText().toString()) * 60 + Integer.parseInt(second.getText().toString()) + Integer.parseInt(milisecond.getText().toString()) / 1000.0;
+
+                int min = Integer.parseInt( minute.getText().toString()) * 60;
+                int sec = Integer.parseInt(second.getText().toString());
+                double mil = Integer.parseInt(milisecond.getText().toString()) / 1000.0;
+                gameScore = min + sec + mil;
+
+
                 String urlString = "https://internationalgames-mikerada6.c9users.io/addScore.php";
                 try {
                     // open a connection to the site
@@ -92,7 +101,7 @@ public class AddScoreTime extends AppCompatActivity {
                     // send your parameters to your site
                     ps.print("gameID=" + 1);
                     ps.print("&teamID=" + 2);
-                    ps.print("&core=" + gameScore);
+                    ps.print("&score=" + gameScore);
                     ps.print("&spiritScore=" + spiritScore);
                     ps.print("&userID=" + 3);
 
@@ -103,14 +112,19 @@ public class AddScoreTime extends AppCompatActivity {
                     // close the print stream
                     ps.close();
                     BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String temp = "";
+                    String line = null;
+                    while ((line = in.readLine()) != null) {
+                        temp += line;
+                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                goBack();
             }
         });
-        goBack();
     }
 
     public void goBack() {
