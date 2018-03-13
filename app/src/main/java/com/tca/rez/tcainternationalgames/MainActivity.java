@@ -43,73 +43,14 @@ public class MainActivity extends AppCompatActivity {
         current = this;
         userName = (EditText) findViewById( R.id.username );
         pass = (EditText) findViewById( R.id.password );
-        content = (TextView) findViewById( R.id.content );
+         content = (TextView) findViewById( R.id.content );
         final Button login = (Button) findViewById( R.id.butSubmit );
         count = 0;
-        progressDialog = new ProgressDialog( this );
-        progressDialog.setCancelable( false );
         login.setOnClickListener( new Button.OnClickListener() {
             public void onClick(View view) {
                 Login login = new Login( userName.getText().toString(), pass.getText().toString(), current );
                 login.execute();
             }
         } );
-    }
-
-    private void loginUser(final String user, final String password) {
-        // Tag used to cancel the request
-        String tag_string_req = "req_login";
-
-        progressDialog.setMessage( "Logging in ..." );
-        showDialog();
-        try {
-            // open a connection to the site
-            URL url = new URL( "https://internationalgames-mikerada6.c9users.io/password_verify.php" );
-            URLConnection con = url.openConnection();
-            // activate the output
-            con.setDoOutput( true );
-            PrintStream ps = new PrintStream( con.getOutputStream() );
-            // send your parameters to your site
-            ps.print( "user=" + user );
-            ps.print( "&password=" + password );
-
-            // we have to get the input stream in order to actually send the request
-            con.getInputStream();
-
-            // close the print stream
-            ps.close();
-            BufferedReader in = new BufferedReader( new InputStreamReader( con.getInputStream() ) );
-            String temp = "";
-            String line = null;
-            while ((line = in.readLine()) != null) {
-                temp += line;
-            }
-            if (temp.equals( "yes" )) {
-
-                //log in
-                Intent i = new Intent( this, GameLandingPage.class );
-                i.putExtra( "com.tca.rez.tcainternationalgames.user", user + "" ); //Optional parameters
-                startActivity( i );
-            } else {
-                content.setText( "Error" );
-                content.setVisibility( View.VISIBLE );
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        hideDialog();
-
-    }
-
-    private void showDialog() {
-        if (!progressDialog.isShowing())
-            progressDialog.show();
-    }
-
-    private void hideDialog() {
-        if (progressDialog.isShowing())
-            progressDialog.dismiss();
     }
 }
